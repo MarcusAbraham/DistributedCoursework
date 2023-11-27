@@ -1,0 +1,10 @@
+
+-Create proper database build script to create the tables. Refer to slides, remember that the primary keys need to auto increment when they a new one is created
+
+-Create a borrow form, add a query that creates a new entry in the loan table tied to that student
+
+-Create a return form, add a query that determines if they need to be fined, creating a new fine if so, and deletes the loan
+
+-Create a form to pay fines, that deletes their fine 
+
+-Do total fine paid in a specific month.
