@@ -44,6 +44,7 @@ public class ReportOracleBean {
         String query = "SELECT * FROM loans WHERE student_id = " + studentId +
                 " AND EXTRACT(MONTH FROM date_borrowed) = " + month;
 
+
         Statement stmt = null;
         List<loanModel> loans = new ArrayList<>();
 
@@ -101,5 +102,34 @@ public class ReportOracleBean {
             e.printStackTrace();
         }
         return Collections.emptyList();
+    }
+
+    public double getPaidFines(String studentId, String month) {
+        String query = "SELECT pf.*, f.amount_owed FROM paid_fines pf " +
+                "JOIN fines f ON pf.fine_id = f.fine_id " +
+                "JOIN loans l ON f.loan_id = l.loan_id " +
+                "WHERE l.student_id = " + studentId +
+                " AND EXTRACT(MONTH FROM f.date_issued) = " + month;
+
+        Statement stmt = null;
+        double total = 0.0;
+
+        try {
+            Connection con = oracleClientProvider.getOracleClient();
+            stmt = con.createStatement();
+            ResultSet paidFineResults = stmt.executeQuery(query);
+
+            while (paidFineResults.next()) {
+                double amountOwed = paidFineResults.getDouble("amount_owed");
+                total += amountOwed;
+            }
+            System.out.println("Total fines calculated: " + total);
+            stmt.close();
+            return total;
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return 0.0;
     }
 }

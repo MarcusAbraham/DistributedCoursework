@@ -34,14 +34,16 @@ public class ReportServlet extends HttpServlet {
         String month = request.getParameter("month");
 
         // Use the values to fetch the loan and fine data
+        List<Integer> studentIds = reportOracleBean.getStudentIds();
         List<loanModel> loans = reportOracleBean.getLoansByStudentAndMonth(studentId, month);
         List<fineModel> fines = reportOracleBean.getFinesByStudentAndMonth(studentId, month);
-        List<Integer> studentIds = reportOracleBean.getStudentIds();
+        double amount_paid = reportOracleBean.getPaidFines(studentId, month);
 
         // Set retrieved loan and fine data as request attributes
+        request.setAttribute("studentIds", studentIds);
         request.setAttribute("loans", loans);
         request.setAttribute("fines", fines);
-        request.setAttribute("studentIds", studentIds);
+        request.setAttribute("amount_paid", amount_paid);
 
         // Forward to the report.jsp page
         request.getRequestDispatcher("/report.jsp").forward(request, response);
