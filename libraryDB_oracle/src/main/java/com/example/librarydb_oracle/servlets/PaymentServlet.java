@@ -10,42 +10,45 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/ReportServlet")
-public class ReportServlet extends HttpServlet {
+@WebServlet("/PaymentServlet")
+public class PaymentServlet extends HttpServlet {
     @EJB
-    private ReportOracleBean reportOracleBean;
+    private PaymentOracleBean paymentOracleBean;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Fetch student IDs from the database
-        List<Integer> studentIds = reportOracleBean.getStudentIds();
+        List<Integer> studentIds = paymentOracleBean.getStudentIds();
 
         // Set the student IDs as a request attribute
         request.setAttribute("studentIds", studentIds);
 
         // Forward to the index.jsp page
-        request.getRequestDispatcher("/report.jsp").forward(request, response);
+        request.getRequestDispatcher("/payment.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Retrieve values from the form submission
         String studentId = request.getParameter("studentId");
-        String monthAndYear = request.getParameter("monthAndYear");
+        String action = request.getParameter("action");
+
 
         // Use the values to fetch the loan and fine data
-        List<Integer> studentIds = reportOracleBean.getStudentIds();
-        List<loanModel> loans = reportOracleBean.getLoansByStudentAndMonth(studentId, monthAndYear);
-        List<fineModel> fines = reportOracleBean.getFinesByStudentAndMonth(studentId, monthAndYear);
-        double amount_paid = reportOracleBean.getPaidFines(studentId, monthAndYear);
-
-        // Set retrieved loan and fine data as request attributes
+        List<Integer> studentIds = paymentOracleBean.getStudentIds();
         request.setAttribute("studentIds", studentIds);
-        request.setAttribute("loans", loans);
-        request.setAttribute("fines", fines);
-        request.setAttribute("amount_paid", amount_paid);
+
+        List<fineModel> fines = paymentOracleBean.getOutstandingFines(studentId);
+        request.setAttribute("outstandingFines", fines);
+
+
+        if ("Pay".equals(action)) {
+            // If the action is to pay a fine
+            String fineId = request.getParameter("fineId");
+            paymentOracleBean.payFine(fineId);
+        }
 
         // Forward to the report.jsp page
-        request.getRequestDispatcher("/report.jsp").forward(request, response);
+        request.getRequestDispatcher("/payment.jsp").forward(request, response);
     }
 }

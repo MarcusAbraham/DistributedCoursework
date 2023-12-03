@@ -69,12 +69,39 @@ VALUES ('book2', 'Computer Science');
 INSERT INTO books (book_name, course_title)
 VALUES ('book3', 'Psychology');
 
+INSERT INTO books (book_name, course_title)
+VALUES ('book4', 'Physics');
+
+INSERT INTO books (book_name, course_title)
+VALUES ('book5', 'Chemistry');
+
+INSERT INTO books (book_name, course_title)
+VALUES ('book6', 'Chemistry');
+
+INSERT INTO books (book_name, course_title)
+VALUES ('book7', 'Mathematics');
+
+INSERT INTO books (book_name, course_title)
+VALUES ('book8', 'Sociology');
+
 -- Adding test data to the loans table
 INSERT INTO loans (student_id, book_id, date_borrowed)
 VALUES ('1', '1', TO_DATE('01/01/2023', 'DD/MM/YYYY'));
 
 INSERT INTO loans (student_id, book_id, date_borrowed)
 VALUES ('1', '2', TO_DATE('05/01/2023', 'DD/MM/YYYY'));
+
+INSERT INTO loans (student_id, book_id, date_borrowed)
+VALUES ('1', '3', TO_DATE('07/02/2023', 'DD/MM/YYYY'));
+
+INSERT INTO loans (student_id, book_id, date_borrowed)
+VALUES ('2', '4', TO_DATE('01/02/2022', 'DD/MM/YYYY'));
+
+INSERT INTO loans (student_id, book_id, date_borrowed)
+VALUES ('2', '5', TO_DATE('05/02/2022', 'DD/MM/YYYY'));
+
+INSERT INTO loans (student_id, book_id, date_borrowed)
+VALUES ('2', '6', TO_DATE('25/05/2022', 'DD/MM/YYYY'));
 
 -- Adding test data to the fines table
 INSERT INTO fines (loan_id, amount_owed, date_issued)
@@ -83,6 +110,24 @@ VALUES ('1', 20, TO_DATE('29/01/2023', 'DD/MM/YYYY'));
 INSERT INTO fines (loan_id, amount_owed, date_issued)
 VALUES ('2', 10.50, TO_DATE('29/01/2023', 'DD/MM/YYYY'));
 
+INSERT INTO fines (loan_id, amount_owed, date_issued)
+VALUES ('3', 5, TO_DATE('07/03/2023', 'DD/MM/YYYY'));
+
+INSERT INTO fines (loan_id, amount_owed, date_issued)
+VALUES ('4', 5, TO_DATE('01/03/2022', 'DD/MM/YYYY'));
+
+INSERT INTO fines (loan_id, amount_owed, date_issued)
+VALUES ('5', 5, TO_DATE('30/05/2022', 'DD/MM/YYYY'));
+
+INSERT INTO fines (loan_id, amount_owed, date_issued)
+VALUES ('6', 5, TO_DATE('10/04/2022', 'DD/MM/YYYY'));
+
 -- Adding test data to the paid_fines table
 INSERT INTO paid_fines (fine_id, date_paid)
 VALUES ('1', TO_DATE('30/01/2023', 'DD/MM/YYYY'));
+
+INSERT INTO paid_fines (fine_id, date_paid)
+VALUES ('2', TO_DATE('20/02/2023', 'DD/MM/YYYY'));
+
+INSERT INTO paid_fines (fine_id, date_paid)
+VALUES ('4', TO_DATE('20/04/2022', 'DD/MM/YYYY'));

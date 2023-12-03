@@ -40,10 +40,9 @@ public class ReportOracleBean {
         return Collections.emptyList();
     }
 
-    public List<loanModel> getLoansByStudentAndMonth(String studentId, String month) {
+    public List<loanModel> getLoansByStudentAndMonth(String studentId, String monthAndYear) {
         String query = "SELECT * FROM loans WHERE student_id = " + studentId +
-                " AND EXTRACT(MONTH FROM date_borrowed) = " + month;
-
+                " AND TO_CHAR(date_borrowed, 'YYYY-MM') = '" + monthAndYear + "'";
 
         Statement stmt = null;
         List<loanModel> loans = new ArrayList<>();
@@ -71,11 +70,11 @@ public class ReportOracleBean {
         return Collections.emptyList();
     }
 
-    public List<fineModel> getFinesByStudentAndMonth(String studentId, String month) {
+    public List<fineModel> getFinesByStudentAndMonth(String studentId, String monthAndYear) {
         String query = "SELECT f.* FROM fines f " +
                 "JOIN loans l ON f.loan_id = l.loan_id " +
                 "WHERE l.student_id = " + studentId +
-                " AND EXTRACT(MONTH FROM f.date_issued) = " + month;
+                " AND TO_CHAR(f.date_issued, 'YYYY-MM') = '" + monthAndYear + "'";
 
         Statement stmt = null;
         List<fineModel> fines = new ArrayList<>();
@@ -104,12 +103,12 @@ public class ReportOracleBean {
         return Collections.emptyList();
     }
 
-    public double getPaidFines(String studentId, String month) {
+    public double getPaidFines(String studentId, String monthAndYear) {
         String query = "SELECT pf.*, f.amount_owed FROM paid_fines pf " +
                 "JOIN fines f ON pf.fine_id = f.fine_id " +
                 "JOIN loans l ON f.loan_id = l.loan_id " +
                 "WHERE l.student_id = " + studentId +
-                " AND EXTRACT(MONTH FROM f.date_issued) = " + month;
+                " AND TO_CHAR(f.date_issued, 'YYYY-MM') = '" + monthAndYear + "'";
 
         Statement stmt = null;
         double total = 0.0;

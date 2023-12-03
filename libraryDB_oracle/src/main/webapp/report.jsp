@@ -60,24 +60,11 @@
         %>
     </select>
 
-    <label for="month">Select Month:</label>
-    <select name="month" id="month">
-        <option value=1>January</option>
-        <option value=2>February</option>
-        <option value=3>March</option>
-        <option value=4>April</option>
-        <option value=5>May</option>
-        <option value=6>June</option>
-        <option value=7>July</option>
-        <option value=8>August</option>
-        <option value=9>September</option>
-        <option value=10>October</option>
-        <option value=11>November</option>
-        <option value=12>December</option>
+    <label for="monthAndYear">Select Month:</label>
+    <input type="month" id="monthAndYear" name="monthAndYear"/>
 
-    </select>
 
-    <input type="submit" value="Search">
+    <input class="btn btn-secondary ml-2" type="submit" value="Search">
 </form>
 
 <br/>
@@ -172,6 +159,8 @@
 <%
     }
 %>
+
+<a class="btn btn-secondary mt-2" href="index.jsp" role="button">Return To Home</a>
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

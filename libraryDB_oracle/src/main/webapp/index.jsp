@@ -20,14 +20,14 @@
     <title>UoG Library Home</title>
 </head>
 <body>
-<h1><%= "University of Gloucestershire Library Manager" %></h1>
+<h1>University of Gloucestershire Library Manager</h1>
 <br/>
 <div class="container">
     <a class="btn btn-secondary" href="borrow.jsp" role="button">Borrow Books</a>
     <br/>
     <a class="btn btn-secondary" href="return.jsp" role="button">Return Books</a>
     <br/>
-    <a class="btn btn-secondary" href="payment.jsp" role="button">Pay Fine</a>
+    <a class="btn btn-secondary" href="PaymentServlet" role="button">Pay Fine</a>
     <br/>
     <a class="btn btn-secondary" href="ReportServlet" role="button">Views Reports</a>
 </div>
