@@ -60,7 +60,7 @@
         %>
     </select>
 
-    <label for="monthAndYear">Select Month:</label>
+    <label class="ml-1" for="monthAndYear">Select Month:</label>
     <input type="month" id="monthAndYear" name="monthAndYear"/>
 
 

@@ -23,7 +23,7 @@
 <h1>University of Gloucestershire Library Manager</h1>
 <br/>
 <div class="container">
-    <a class="btn btn-secondary" href="borrow.jsp" role="button">Borrow Books</a>
+    <a class="btn btn-secondary" href="BorrowServlet" role="button">Borrow Books</a>
     <br/>
     <a class="btn btn-secondary" href="return.jsp" role="button">Return Books</a>
     <br/>

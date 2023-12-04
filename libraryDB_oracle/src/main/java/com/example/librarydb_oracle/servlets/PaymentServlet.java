@@ -45,7 +45,8 @@ public class PaymentServlet extends HttpServlet {
         if ("Pay".equals(action)) {
             // If the action is to pay a fine
             String fineId = request.getParameter("fineId");
-            paymentOracleBean.payFine(fineId);
+            boolean paid = paymentOracleBean.payFine(fineId);
+            request.setAttribute("paidFine", paid);
         }
 
         // Forward to the report.jsp page

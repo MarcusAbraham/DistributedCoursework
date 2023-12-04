@@ -1,5 +1,5 @@
 package com.example.librarydb_oracle.beans;
-import com.example.librarydb_oracle.models.fineModel;
+import com.example.librarydb_oracle.models.*;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import java.sql.Connection;
@@ -11,36 +11,11 @@ import java.util.Collections;
 import java.util.List;
 
 @Stateless
-public class PaymentOracleBean {
+public class PaymentOracleBean extends OracleBean {
 
     @EJB
     OracleClientProviderBean oracleClientProvider;
     public PaymentOracleBean(){
-    }
-
-    public List<Integer> getStudentIds() {
-        String query = "SELECT student_id FROM students";
-
-        Statement stmt = null;
-        List<Integer> studentIds = new ArrayList<>();
-
-        try {
-            Connection con = oracleClientProvider.getOracleClient();
-            stmt = con.createStatement();
-            ResultSet studentResults = stmt.executeQuery(query);
-
-            while (studentResults.next()) {
-                int studentId = studentResults.getInt("student_id");
-                studentIds.add(studentId);
-            }
-
-            stmt.close();
-            return studentIds;
-        } catch (SQLException e) {
-            System.out.println("Error: " + e.getMessage());
-            e.printStackTrace();
-        }
-        return Collections.emptyList();
     }
 
     public List<fineModel> getOutstandingFines(String studentId) {
@@ -75,7 +50,20 @@ public class PaymentOracleBean {
         return Collections.emptyList();
     }
 
-    public void payFine(String fineId) {
+    public Boolean payFine(String fineId) {
+        String query = "INSERT INTO paid_fines (fine_id, date_paid) VALUES (" + fineId + ", TO_DATE(CURRENT_DATE, 'DD-MM-YYYY'))";
 
+        Statement stmt = null;
+
+        try {
+            Connection con = oracleClientProvider.getOracleClient();
+            stmt = con.createStatement();
+            stmt.executeQuery(query);
+            return true;
+        }catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return false;
     }
 }

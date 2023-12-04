@@ -93,6 +93,13 @@
 <%
         }
     }
+
+    Boolean paidFine = (Boolean) request.getAttribute("paidFine");
+    if (paidFine != null && paidFine) {
+%>
+        <p>Fine paid successfully!</p>
+<%
+    }
 %>
 
 <a class="btn btn-secondary mt-2" href="index.jsp" role="button">Return To Home</a>
