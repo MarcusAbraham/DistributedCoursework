@@ -1,0 +1,4 @@
+-Update ERD
+-Create testing table and other relevant UML diagrams
+-Comment the entirety of my code
+-Layout what i'll put in the report

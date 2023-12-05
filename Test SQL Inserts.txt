@@ -1,8 +1,0 @@
-INSERT INTO students (student_id, student_name, email, course_name)
-VALUES (1, 'marcus', 'testing@gmail.com', 'Computer Science');
-
-INSERT INTO books (book_id, book_name, course_title)
-VALUES (1, 'coding for dummies', 'Computer Science');
-
-INSERT INTO loans (loan_id, student_id, book_id, date_borrowed)
-VALUES (1, 1, 1, TO_DATE('2023/01/01', 'YYYY/MM/DD'));
