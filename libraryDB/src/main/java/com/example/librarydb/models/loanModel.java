@@ -5,29 +5,29 @@ import java.util.Date;
 
 public class loanModel implements Serializable {
 
-    private int loan_id;
-    private int student_id;
-    private int book_id;
+    private String loan_id;
+    private String student_id;
+    private String book_id;
     private Date date_borrowed;
 
-    public int getLoan_id() {
+    public String getLoan_id() {
         return loan_id;
     }
-    public void setLoan_id(int loan_id) {
+    public void setLoan_id(String loan_id) {
         this.loan_id = loan_id;
     }
 
-    public int getStudent_id() {
+    public String getStudent_id() {
         return student_id;
     }
-    public void setStudent_id(int student_id) {
+    public void setStudent_id(String student_id) {
         this.student_id = student_id;
     }
 
-    public int getBook_id() {
+    public String getBook_id() {
         return book_id;
     }
-    public void setBook_id(int book_id) {
+    public void setBook_id(String book_id) {
         this.book_id = book_id;
     }
 

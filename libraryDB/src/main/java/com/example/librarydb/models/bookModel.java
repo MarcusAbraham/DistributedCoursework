@@ -1,17 +1,19 @@
 package com.example.librarydb.models;
 
+import org.bson.types.ObjectId;
+
 import java.io.Serializable;
 
 public class bookModel implements Serializable {
 
-    private int book_id;
+    private String book_id;
     private String book_name;
     private String course_title;
 
-    public int getBook_id() {
+    public String getBook_id() {
         return book_id;
     }
-    public void setBook_id(int book_id) {
+    public void setBook_id(String book_id) {
         this.book_id = book_id;
     }
 

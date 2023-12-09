@@ -6,22 +6,22 @@ import java.util.Date;
 
 public class fineModel implements Serializable {
 
-    private int fine_id;
-    private int loan_id;
+    private String fine_id;
+    private String loan_id;
     private BigDecimal amount_owed;
     private Date date_issued;
 
-    public int getFine_id() {
+    public String getFine_id() {
         return fine_id;
     }
-    public void setFine_id(int fine_id) {
+    public void setFine_id(String fine_id) {
         this.fine_id = fine_id;
     }
 
-    public int getLoan_id() {
+    public String getLoan_id() {
         return loan_id;
     }
-    public void setLoan_id(int loan_id) {
+    public void setLoan_id(String loan_id) {
         this.loan_id = loan_id;
     }
 

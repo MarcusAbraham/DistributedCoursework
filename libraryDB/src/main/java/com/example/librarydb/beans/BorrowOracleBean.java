@@ -38,7 +38,7 @@ public class BorrowOracleBean extends OracleBean {
 
             while (bookResults.next()) {
                 bookModel retrievedbook = new bookModel();
-                retrievedbook.setBook_id(bookResults.getInt("book_id"));
+                retrievedbook.setBook_id(bookResults.getString("book_id"));
                 retrievedbook.setBook_name(bookResults.getString("book_name"));
                 retrievedbook.setCourse_title(bookResults.getString("course_title"));
                 books.add(retrievedbook);

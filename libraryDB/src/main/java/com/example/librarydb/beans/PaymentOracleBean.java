@@ -34,8 +34,8 @@ public class PaymentOracleBean extends OracleBean {
 
             while (loanResults.next()) {
                 fineModel retrievedFines = new fineModel();
-                retrievedFines.setFine_id(loanResults.getInt("fine_id"));
-                retrievedFines.setLoan_id(loanResults.getInt("loan_id"));
+                retrievedFines.setFine_id(loanResults.getString("fine_id"));
+                retrievedFines.setLoan_id(loanResults.getString("loan_id"));
                 retrievedFines.setAmount_owed(loanResults.getBigDecimal("amount_owed"));
                 retrievedFines.setDate_issued(loanResults.getDate("date_issued"));
                 fines.add(retrievedFines);

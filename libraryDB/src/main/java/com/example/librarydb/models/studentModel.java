@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 public class studentModel implements Serializable {
 
-    private int student_id;
+    private String student_id;
     private String student_name;
     private String email;
     private String course_name;
 
 
-    public int getStudent_id() {
+    public String getStudent_id() {
         return student_id;
     }
-    public void setStudent_id(int student_id) {
+    public void setStudent_id(String student_id) {
         this.student_id = student_id;
     }
 

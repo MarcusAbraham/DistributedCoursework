@@ -18,7 +18,7 @@ public class ReportServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Fetch student IDs from the database
-        List<Integer> studentIds = reportOracleBean.getStudentIds();
+        List<String> studentIds = reportOracleBean.getStudentIds();
 
         // Set the student IDs as a request attribute
         request.setAttribute("studentIds", studentIds);
@@ -34,7 +34,7 @@ public class ReportServlet extends HttpServlet {
         String monthAndYear = request.getParameter("monthAndYear");
 
         // Use the values to fetch the loan and fine data
-        List<Integer> studentIds = reportOracleBean.getStudentIds();
+        List<String> studentIds = reportOracleBean.getStudentIds();
         List<loanModel> loans = reportOracleBean.getLoansByStudentAndMonth(studentId, monthAndYear);
         List<fineModel> fines = reportOracleBean.getFinesByStudentAndMonth(studentId, monthAndYear);
         double amount_paid = reportOracleBean.getPaidFines(studentId, monthAndYear);

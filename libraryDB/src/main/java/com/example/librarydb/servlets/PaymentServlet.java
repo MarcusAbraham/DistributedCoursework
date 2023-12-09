@@ -18,7 +18,7 @@ public class PaymentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Fetch student IDs from the database
-        List<Integer> studentIds = paymentOracleBean.getStudentIds();
+        List<String> studentIds = paymentOracleBean.getStudentIds();
 
         // Set the student IDs as a request attribute
         request.setAttribute("studentIds", studentIds);
@@ -35,7 +35,7 @@ public class PaymentServlet extends HttpServlet {
 
 
         // Use the values to fetch the loan and fine data
-        List<Integer> studentIds = paymentOracleBean.getStudentIds();
+        List<String> studentIds = paymentOracleBean.getStudentIds();
         request.setAttribute("studentIds", studentIds);
 
         List<fineModel> fines = paymentOracleBean.getOutstandingFines(studentId);

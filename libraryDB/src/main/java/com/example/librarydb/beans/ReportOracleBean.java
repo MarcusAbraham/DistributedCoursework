@@ -29,9 +29,9 @@ public class ReportOracleBean extends OracleBean {
 
             while (loanResults.next()) {
                 loanModel retrievedLoans = new loanModel();
-                retrievedLoans.setLoan_id(loanResults.getInt("loan_id"));
-                retrievedLoans.setStudent_id(loanResults.getInt("student_id"));
-                retrievedLoans.setBook_id(loanResults.getInt("book_id"));
+                retrievedLoans.setLoan_id(loanResults.getString("loan_id"));
+                retrievedLoans.setStudent_id(loanResults.getString("student_id"));
+                retrievedLoans.setBook_id(loanResults.getString("book_id"));
                 retrievedLoans.setDate_borrowed(loanResults.getDate("date_borrowed"));
                 loans.add(retrievedLoans);
             }
@@ -62,8 +62,8 @@ public class ReportOracleBean extends OracleBean {
 
             while (fineResults.next()) {
                 fineModel retrievedFines = new fineModel();
-                retrievedFines.setFine_id(fineResults.getInt("fine_id"));
-                retrievedFines.setLoan_id(fineResults.getInt("loan_id"));
+                retrievedFines.setFine_id(fineResults.getString("fine_id"));
+                retrievedFines.setLoan_id(fineResults.getString("loan_id"));
                 retrievedFines.setAmount_owed(fineResults.getBigDecimal("amount_owed"));
                 retrievedFines.setDate_issued(fineResults.getDate("date_issued"));
                 fines.add(retrievedFines);

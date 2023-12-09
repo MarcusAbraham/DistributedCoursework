@@ -39,7 +39,7 @@ public class ReturnOracleBean extends OracleBean {
 
             while (bookResults.next()) {
                 bookModel retrievedBooks = new bookModel();
-                retrievedBooks.setBook_id(bookResults.getInt("book_id"));
+                retrievedBooks.setBook_id(bookResults.getString("book_id"));
                 retrievedBooks.setBook_name(bookResults.getString("book_name"));
                 retrievedBooks.setCourse_title(bookResults.getString("course_title"));
                 loanedBooks.add(retrievedBooks);
@@ -69,9 +69,9 @@ public class ReturnOracleBean extends OracleBean {
 
             loanModel loan = new loanModel();
             if (loanResult.next()) {
-                loan.setLoan_id(loanResult.getInt("loan_id"));
-                loan.setStudent_id(loanResult.getInt("student_id"));
-                loan.setBook_id(loanResult.getInt("book_id"));
+                loan.setLoan_id(loanResult.getString("loan_id"));
+                loan.setStudent_id(loanResult.getString("student_id"));
+                loan.setBook_id(loanResult.getString("book_id"));
                 loan.setDate_borrowed(loanResult.getDate("date_borrowed"));
                 }
             return loan;

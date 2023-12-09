@@ -37,9 +37,9 @@
     <select name="studentId" id="studentId">
         <%
             // Retrieve student IDs from request attribute
-            List<Integer> studentIds = (List<Integer>) request.getAttribute("studentIds");
+            List<String> studentIds = (List<String>) request.getAttribute("studentIds");
             if (studentIds != null) {
-                for (Integer studentId : studentIds) {
+                for (String studentId : studentIds) {
         %>
         <option value="<%= studentId %>"><%= studentId %></option>
         <%

@@ -16,18 +16,18 @@ public class OracleBean {
     public OracleBean(){
     }
 
-    public List<Integer> getStudentIds() {
+    public List<String> getStudentIds() {
         String query = "SELECT student_id FROM students";
 
         Statement stmt = null;
-        List<Integer> studentIds = new ArrayList<>();
+        List<String> studentIds = new ArrayList<>();
         try {
             Connection con = oracleClientProvider.getOracleClient();
             stmt = con.createStatement();
             ResultSet studentResults = stmt.executeQuery(query);
 
             while (studentResults.next()) {
-                int studentId = studentResults.getInt("student_id");
+                String studentId = studentResults.getString("student_id");
                 studentIds.add(studentId);
             }
 
