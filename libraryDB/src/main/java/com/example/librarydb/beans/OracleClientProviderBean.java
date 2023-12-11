@@ -7,10 +7,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-@Singleton(name = "OracleClientProviderEJB")
+@Singleton
 public class OracleClientProviderBean {
-    public OracleClientProviderBean() {
-    }
     private Connection oracleClient = null;
 
     @Lock(LockType.READ)

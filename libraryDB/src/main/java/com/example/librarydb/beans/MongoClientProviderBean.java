@@ -6,7 +6,7 @@ import jakarta.ejb.Lock;
 import jakarta.ejb.LockType;
 import jakarta.ejb.Singleton;
 
-@Singleton(name = "MongoClientProviderEJB")
+@Singleton
 public class MongoClientProviderBean {
     private MongoClient mongoCLient = null;
 

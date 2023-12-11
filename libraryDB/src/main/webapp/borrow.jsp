@@ -42,7 +42,9 @@
 
     <div class="container">
         <div>
+            <!-- Creates a table of books that are not currently being loaned -->
         <%
+            // Retrieve available books from the servlet, check if it is empty
             List<bookModel> books = (List<bookModel>) request.getAttribute("books");
             if (books != null) {
                 if (!books.isEmpty()) {
@@ -54,6 +56,7 @@
                         <th>Course Title</th>
                     </tr>
 
+                    <!-- Iterate over all books and create an entry in the table for them -->
                     <% for (bookModel book : books) { %>
                     <tr>
                         <td><%= book.getBook_id() %></td>
@@ -73,11 +76,12 @@
             <label for="studentId">Select Student ID:</label>
             <select name="studentId" id="studentId">
                 <%
-                    // Retrieve student IDs from request attribute
+                    // Retrieve student id's from the servlet, and checks if the list is empty
                     List<String> studentIds = (List<String>) request.getAttribute("studentIds");
                     if (studentIds != null) {
                         for (String studentId : studentIds) {
                 %>
+                <!-- Creates a dropdown of student id's -->
                 <option value="<%= studentId %>"><%= studentId %></option>
                 <%
                         }
@@ -88,10 +92,12 @@
             <label class="ml-1" for="bookId">Select Book ID:</label>
             <select name="bookId" id="bookId">
                 <%
+                    // If the list of books is not empty, create a dropdown of book id's
                     if (books != null) {
                         if (!books.isEmpty()) {
                         for (bookModel book : books) {
                 %>
+                <!-- Creates a dropdown of book id's -->
                 <option value="<%= book.getBook_id() %>"><%= book.getBook_id() %></option>
                 <%
                         }
@@ -106,6 +112,7 @@
     </div>
 
     <%
+        // Check if a book has been loaned, and if so display a message to indicate this
         Boolean loaned = (Boolean) request.getAttribute("loaned");
         if (loaned != null && loaned) {
     %>
@@ -116,5 +123,9 @@
 
     <a class="btn btn-secondary mt-2" href="index.jsp" role="button">Return To Home</a>
 
+    <!-- Script tags for bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

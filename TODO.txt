@@ -3,27 +3,23 @@ DONE Borrow book: Initial(getStudentIds/getBooks) -> form1(getStudentIds/getBook
 
 DONE Return book: Initial(getStudentIds) -> form1(getStudentIds/getLoanedBooks) -> form2 (getLoanFromBookId/returnBook/calculateFine)
 
-Pay fine: Initial(getStudentIds) -> form1(getStudentIds/getOutstandingFines) -> form2(getStudentIds/getOutstandingFines/payFine) 
+DONE Pay fine: Initial(getStudentIds) -> form1(getStudentIds/getOutstandingFines) -> form2(getStudentIds/getOutstandingFines/payFine) 
 
-Report: Initial(getStudentIds) -> form1(getStudentIds/getLoansByStudentAndMonth/getFinesByStudentAndMonth/getPaidFines)
+DONE Report: Initial(getStudentIds) -> form1(getStudentIds/getLoansByStudentAndMonth/getPaidFines)
 
 How many unique functions:
 getSudentIds DONE
 getBooks DONE
 createLoan DONE
 getLoanedBooks DONE
-getLoanFromBook MADE UNECESSARY
 returnBook DONE
 calculateFine DONE
-getOutstandingFines 
-payFine
-getLoansByStudentAndMonth
-getFinesByStudentAndMonth
-getPaidFines
+getOutstandingFines DONE 
+payFine DONE 
+getLoansByStudentAndMonth DONE
+getPaidFines DONE
 
 Admin:
 -Update ERD
--Create testing table and other relevant UML diagrams
--Comment the entirety of my code
+-Create other relevant diagrams
 -Layout what i'll put in the report
-

@@ -40,9 +40,9 @@
     <select name="studentId" id="studentId">
         <%
             // Retrieve student IDs from request attribute
-            List<Integer> studentIds = (List<Integer>) request.getAttribute("studentIds");
+            List<String> studentIds = (List<String>) request.getAttribute("studentIds");
             if (studentIds != null) {
-                for (Integer studentId : studentIds) {
+                for (String studentId : studentIds) {
         %>
         <option value="<%= studentId %>"><%= studentId %></option>
         <%
@@ -62,34 +62,72 @@
     if (fines != null) {
         if (!fines.isEmpty()) {
 %>
-        <h3>Outstanding Fines</h3>
-        <form action="PaymentServlet" method="post">
-            <table>
-                <tr>
-                    <th>Fine Id</th>
-                    <th>Loan ID</th>
-                    <th>Amount Owed</th>
-                    <th>Date Issued</th>
-                </tr>
+            <h3>Outstanding Fines</h3>
+            <form action="PaymentServlet" method="post">
+                <table>
+                    <tr>
+                        <th>Fine Id</th>
+                        <th>Loan ID</th>
+                        <th>Amount Owed</th>
+                        <th>Date Issued</th>
+                    </tr>
 
-                <% for (fineModel fine : fines) { %>
-                <tr>
-                    <td><%= fine.getFine_id() %></td>
-                    <td><%= fine.getLoan_id() %></td>
-                    <td><%= fine.getAmount_owed() %></td>
-                    <td><%= fine.getDate_issued() %></td>
-                </tr>
-                <% } %>
-            </table>
+                    <% for (fineModel fine : fines) { %>
+                    <tr>
+                        <td><%= fine.getFine_id() %></td>
+                        <td><%= fine.getLoan_id() %></td>
+                        <td><%= fine.getAmount_owed() %></td>
+                        <td><%= fine.getDate_issued() %></td>
+                    </tr>
+                    <% } %>
+                </table>
 
-            <label for="fineId">Select Fine ID:</label>
-            <select name="fineId" id="fineId">
-                <% for (fineModel fine : fines) { %>
-                <option value="<%= fine.getFine_id() %>"><%= fine.getFine_id() %></option>
-                <% } %>
-            </select>
-            <input class="btn btn-secondary ml-2" type="submit" name="action" value="Pay">
-        </form>
+                <label for="fineId">Select Fine ID:</label>
+                <select name="fineId" id="fineId">
+                    <% for (fineModel fine : fines) { %>
+                    <option value="<%= fine.getFine_id() %>"><%= fine.getFine_id() %></option>
+                    <% } %>
+                </select>
+                <input class="btn btn-secondary ml-2" type="submit" name="action" value="Pay">
+            </form>
+<%
+        }
+    }
+
+    // Retrieve student data from request attribute
+    List<loanModelMongo> mongoFines = (List<loanModelMongo>) request.getAttribute("mongoOutstandingFines");
+    if (mongoFines != null) {
+        if (!mongoFines.isEmpty()) {
+%>
+            <h3>Outstanding Fines</h3>
+            <form action="PaymentServlet" method="post">
+                <table>
+                    <tr>
+                        <th>Book Id</th>
+                        <th>Date Borrowed</th>
+                        <th>Date Returned</th>
+                        <th>Fine</th>
+                    </tr>
+
+                    <% for (loanModelMongo fine : mongoFines) { %>
+                    <tr>
+                        <td><%= fine.getBook_id() %></td>
+                        <td><%= fine.getDate_borrowed() %></td>
+                        <td><%= fine.getDate_returned() %></td>
+                        <td><%= fine.getFine() %></td>
+                    </tr>
+                    <% } %>
+                </table>
+
+                <label for="bookId">Select Fine ID:</label>
+                <select name="bookId" id="bookId">
+                    <% for (loanModelMongo fine : mongoFines) { %>
+                    <option value="<%= fine.getBook_id() %>"><%= fine.getBook_id() %></option>
+                    <% } %>
+                </select>
+                <input class="btn btn-secondary ml-2" type="submit" name="action" value="Pay">
+            </form>
+
 <%
         }
     }

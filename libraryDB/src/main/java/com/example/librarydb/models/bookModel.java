@@ -1,7 +1,4 @@
 package com.example.librarydb.models;
-
-import org.bson.types.ObjectId;
-
 import java.io.Serializable;
 
 public class bookModel implements Serializable {
