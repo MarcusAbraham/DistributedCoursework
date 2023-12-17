@@ -67,24 +67,23 @@ public class BorrowServlet  extends HttpServlet {
 
         // Check which database the servlet is set to use, and execute the appropriate flow
         if(DatabaseType == DB_TYPE.ORACLE) {
-            // Fetch student id's and books from the database
-            books = borrowOracleBean.getBooks();
-            studentIds = borrowOracleBean.getStudentIds();
-
             //Create a new loan for the book and student Ids passed in
             boolean loaned = borrowOracleBean.createLoan(studentId, bookId);
             // Set the boolean "loaned" as a request attribute, to pass it back to the view
             request.setAttribute("loaned", loaned);
 
+            // Fetch student id's and books from the database
+            books = borrowOracleBean.getBooks();
+            studentIds = borrowOracleBean.getStudentIds();
         } else{
-            // Fetch student and book IDs from the database
-            books = borrowMongoBean.getBooks();
-            studentIds = borrowMongoBean.getStudentIds();
-
             //Create a new loan for the book and student Ids passed in
             boolean loaned = borrowMongoBean.createLoan(studentId, bookId);
             // Set the boolean "loaned" as a request attribute, to pass it back to the view
             request.setAttribute("loaned", loaned);
+
+            // Fetch student and book IDs from the database
+            books = borrowMongoBean.getBooks();
+            studentIds = borrowMongoBean.getStudentIds();
         }
 
         // Set the student id's and books as request attributes, to pass them back to the view

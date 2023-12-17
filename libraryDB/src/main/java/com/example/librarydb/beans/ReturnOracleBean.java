@@ -155,12 +155,22 @@ public class ReturnOracleBean extends OracleBean {
             long fineAmount = 0;
             if (loanResult.next()) {
                 // Gets the current date and the date that the loan was created
-                LocalDateTime currentDate = LocalDateTime.now();
+                LocalDate currentDate = LocalDateTime.now().toLocalDate();
                 LocalDate borrowDate = loanResult.getDate("date_borrowed").toLocalDate();
+
+                // Adjust the borrow dates year to match the current dates format
+                int originalYear = borrowDate.getYear();
+                int adjustedYear = 2000 + originalYear;
+                LocalDate adjustedBorrowDate = LocalDate.of(adjustedYear, borrowDate.getMonth(), borrowDate.getDayOfMonth());
+
+                // If the current date is equal to the borrow date then there's no fine
+                if (currentDate.equals(adjustedBorrowDate)) {
+                    return 0;
+                }
 
                 // Calculates the fine amount (£10 for every 30 days late)
                 long daysDifference = ChronoUnit.DAYS.between(borrowDate, currentDate);
-                long monthsLate = daysDifference / 30;
+                long monthsLate = Math.max(0, daysDifference / 30);
                 fineAmount = monthsLate*10;
             }
 
@@ -169,7 +179,7 @@ public class ReturnOracleBean extends OracleBean {
                 // Creates and executes a query to create a new entry in the fines table for that loan
                 String query2 = "INSERT INTO fines (loan_id, amount_owed, date_issued) " +
                         "VALUES (" + loanId + ", " + fineAmount + ", TO_DATE(CURRENT_DATE, 'DD-MM-YYYY'))";
-                stmt.executeQuery(query2);
+                stmt.executeUpdate(query2);
             }
 
             // If a fine is owed, return the amount owed
